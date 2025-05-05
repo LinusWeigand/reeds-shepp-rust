@@ -1,0 +1,10 @@
+[package]
+name = "reeds_shepp"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+[lib]
+name = "reeds_shepp_lib"
+path = "src/lib.rs"
