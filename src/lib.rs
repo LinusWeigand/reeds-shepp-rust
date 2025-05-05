@@ -1,6 +1,6 @@
 use std::f64::consts::PI;
 
-mod utils;
+pub mod utils;
 pub use utils::Pose;
 pub use utils::normalize_angle_rad;
 
@@ -113,7 +113,7 @@ pub fn get_all_paths(start: Pose, end: Pose) -> Vec<Path> {
         .collect()
 }
 
-fn timeflip(path: Path) -> Path {
+pub fn timeflip(path: Path) -> Path {
     path.into_iter()
         .map(|mut e| {
             e.reverse_gear();
@@ -122,7 +122,7 @@ fn timeflip(path: Path) -> Path {
         .collect()
 }
 
-fn reflect(path: Path) -> Path {
+pub fn reflect(path: Path) -> Path {
     path.into_iter()
         .map(|mut e| {
             e.reverse_steering();
@@ -179,7 +179,7 @@ fn path3(x: f64, y: f64, phi_degree: f64) -> Path {
     let rho = polar.rho;
     let theta = polar.theta;
 
-    if polar.rho >= 4. {
+    if polar.rho <= 4. {
         let a = (rho / 4.).acos();
         let t = utils::normalize_angle_rad(theta + PI / 2. + a);
         let u = utils::normalize_angle_rad(PI - 2. * a);
@@ -206,7 +206,7 @@ fn path4(x: f64, y: f64, phi_degree: f64) -> Path {
     let theta = polar.theta;
 
     if rho <= 4. {
-        let a = (rho / 4.).sin();
+        let a = (rho / 4.).acos();
         let t = utils::normalize_angle_rad(theta + PI / 2. + a);
         let u = utils::normalize_angle_rad(PI - 2. * a);
         let v = utils::normalize_angle_rad(t + u - phi_radians);
@@ -468,3 +468,8 @@ fn path12(x: f64, y: f64, phi_degree: f64) -> Path {
         Vec::new()
     }
 }
+
+pub type PathFn = fn(f64, f64, f64) -> Path;
+pub const PATH_FNS: [PathFn; 12] = [
+    path1, path2, path3, path4, path5, path6, path7, path8, path9, path10, path11, path12,
+];
