@@ -79,18 +79,19 @@ pub fn get_optimal_path(start: Pose, end: Pose) -> Option<Path> {
         .min_by(|a, b| path_length(a).partial_cmp(&path_length(b)).unwrap())
 }
 
-pub fn get_all_paths(start: Pose, end: Pose) -> Vec<Path> {
-    let path_fns: Vec<fn(f64, f64, f64) -> Path> = vec![
-        path1, path2, path3, path4, path5, path6, path7, path8, path9, path10, path11, path12,
-    ];
+pub type PathFn = fn(f64, f64, f64) -> Path;
+pub const PATH_FNS: [PathFn; 12] = [
+    path1, path2, path3, path4, path5, path6, path7, path8, path9, path10, path11, path12,
+];
 
+pub fn get_all_paths(start: Pose, end: Pose) -> Vec<Path> {
     let mut paths: Vec<Path> = Vec::new();
 
     let pose = utils::change_of_basis(&start, &end);
     let x = pose.x;
     let y = pose.y;
     let theta_degree = pose.theta_degree;
-    for get_path in path_fns {
+    for get_path in PATH_FNS {
         let p1 = get_path(x, y, theta_degree);
         let p2 = timeflip(get_path(-x, y, -theta_degree));
         let p3 = reflect(get_path(x, -y, -theta_degree));
@@ -468,8 +469,3 @@ fn path12(x: f64, y: f64, phi_degree: f64) -> Path {
         Vec::new()
     }
 }
-
-pub type PathFn = fn(f64, f64, f64) -> Path;
-pub const PATH_FNS: [PathFn; 12] = [
-    path1, path2, path3, path4, path5, path6, path7, path8, path9, path10, path11, path12,
-];
