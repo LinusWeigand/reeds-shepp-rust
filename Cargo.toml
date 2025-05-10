@@ -2,6 +2,10 @@
 name = "reeds_shepp"
 version = "0.1.0"
 edition = "2024"
+description = "Reeds Sheep Path Planner Algorithm implementation in rust"
+license = "MIT"
+repository = "https://github.com/LinusWeigand/reeds-shepp-rust"
+documentation = "https://docs.rs/reeds_shepp"
 
 [dependencies]
 
