@@ -45,7 +45,7 @@ pub struct PathElement {
 
 impl PathElement {
     fn create(param: f64, steering: Steering, gear: Gear) -> Self {
-        return if param >= 0. {
+        if param >= 0. {
             PathElement {
                 param,
                 steering,
@@ -57,7 +57,7 @@ impl PathElement {
                 steering,
                 gear: gear.reverse(),
             }
-        };
+        }
     }
 
     fn reverse_steering(&mut self) {
@@ -295,9 +295,9 @@ fn path7(x: f64, y: f64, phi_degree: f64) -> Path {
 
     let u1 = (20. - rho * rho) / 16.;
 
-    if rho <= 6. && u1 >= 0. && u1 <= 1. {
+    if rho <= 6. && (0. ..=1.).contains(&u1) {
         let u = u1.acos();
-        let asin_arg = (2. * u.sin() / rho).min(1.0).max(-1.0);
+        let asin_arg = (2. * u.sin() / rho).clamp(-1.0, 1.0);
         let a = asin_arg.asin();
         let t = utils::normalize_angle_rad(theta + PI / 2. + a);
         let v = utils::normalize_angle_rad(t - phi_radians);

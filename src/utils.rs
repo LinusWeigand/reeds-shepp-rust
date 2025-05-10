@@ -18,7 +18,7 @@ pub struct Polar {
 pub fn cartesian_to_polar(x: f64, y: f64) -> Polar {
     let rho = x.hypot(y);
     let theta = y.atan2(x);
-    Polar { rho , theta }
+    Polar { rho, theta }
 }
 
 pub fn degree_to_radians(degree: f64) -> f64 {
