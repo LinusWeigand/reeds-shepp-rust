@@ -1,7 +1,7 @@
-# Rust Reeds-Shepp Path Planning (`reeds_shepp_lite_rs`)
+# Rust Reeds-Shepp Path Planning 
 
-[![Crates.io](https://img.shields.io/crates/v/reeds_shepp_lite_rs.svg)](https://crates.io/crates/reeds_shepp)
-[![Docs.rs](https://docs.rs/reeds_shepp_lite_rs/badge.svg)](https://docs.rs/reeds_shepp)
+[![Crates.io](https://img.shields.io/crates/v/reeds_shepp.svg)](https://crates.io/crates/reeds_shepp)
+[![Docs.rs](https://docs.rs/reeds_shepp/badge.svg)](https://docs.rs/reeds_shepp)
 [![License: MIT](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](./LICENSE-MIT)
 [![Build Status](https://github.com/LinusWeigand/reeds-sheep-rust/workflows/Rust/badge.svg)](https://github.com/LinusWeigand/reeds-shepp-rust/actions)
 
