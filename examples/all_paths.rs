@@ -1,4 +1,4 @@
-use reeds_shepp_lib::{get_all_paths, path_length, Pose};
+use reeds_shepp_lib::{Pose, get_all_paths, path_length};
 
 fn main() {
     let start_pose = Pose {
