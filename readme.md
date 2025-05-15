@@ -24,4 +24,4 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-reeds_shepp_lite_rs = "0.1.0"
+reeds_shepp = "0.1.1"
